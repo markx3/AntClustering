@@ -22,6 +22,7 @@ class Ant():
         self.c              = self.radius*10
         self.max_step_size  = self.grid.shape[0] // 2 + 1
         self.alpha          = alpha
+        self.step_size      = 1
 
     ''' Calculates how many tiles an ant can see around itself '''
     def calc_r_(self):
@@ -39,12 +40,12 @@ class Ant():
         The step size was introduced as means of speeding up
         the overall speed of the algorithm. '''
     def randpos(self):
-        step_size = np.random.randint(1, self.max_step_size)
+        self.step_size = np.random.randint(1, self.max_step_size)
         #step_size = 1
         grid_shape = self.grid.shape[0]
         #step_size = 1
-        x = self.x + np.random.randint(-1 * step_size ,1 * step_size +1)
-        y = self.y + np.random.randint(-1 * step_size,1 * step_size +1)
+        x = self.x + np.random.randint(-1 * self.step_size ,1 * self.step_size +1)
+        y = self.y + np.random.randint(-1 * self.step_size,1 * self.step_size +1)
         if x < 0: x = grid_shape + x
         if x >= grid_shape: x = x - grid_shape
         if y < 0: y = grid_shape + y
@@ -138,12 +139,12 @@ class Ant():
                 ret = 0
                 if seen[i,j] != None:
                     ret = 1 - (euclidean(data,
-                            seen[i,j].get_attribute()))/(self.alpha)
+                            seen[i,j].get_attribute()))/((self.alpha))
                     s += ret
 
         fi = s/(self.r_**2)
         if fi > 0: return fi
-        else: return fi
+        else: return 0
 
     def sigmoid(self, c, x):
         return ((1-np.exp(-(c*x)))/(1+np.exp(-(c*x))))

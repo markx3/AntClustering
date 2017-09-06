@@ -11,9 +11,9 @@ from data import Data
 flags = DOUBLEBUF
 
 class AntClustering():
-    def __init__(self, grid=100,
+    def __init__(self,
+                 grid=100,
                  rad=2,
-                 dead_ants=5000,
                  antnum=50,
                  iterations=5*10**6,
                  fname='datasets/400.txt',
@@ -21,15 +21,14 @@ class AntClustering():
                  sleep=0,
                  dsize=500):
 
-        self.size       = grid          # Grid size
-        self.rad        = rad           # How far can ants see?
-        self.antnum     = antnum        # Number of workers
+        self.size       = grid                      # Grid size
+        self.rad        = rad                       # How far can ants see?
+        self.antnum     = antnum                    # Number of workers
         self.iterations = iterations
-        self.workers    = list()        # Worker ant list
-        self.d_size     = dsize           # Display size
-        self.dtypes     = [1,2,3,4]     # Datatypes
-        self.data       = self._load_data(fname)
-        self.sleep      = sleep
+        self.workers    = list()                    # Worker ant list
+        self.d_size     = dsize                     # Display size
+        self.data       = self._load_data(fname)    # Loads dataset
+        self.sleep      = sleep                     # Sleeps before starting
 
         ''' Calculates alpha if not provided '''
         if alpha == 0:

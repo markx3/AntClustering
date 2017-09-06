@@ -7,7 +7,6 @@ from data import Data
 class Ant():
     ''' Initializes ant '''
     def __init__(self, x, y, radius, grid, its, alpha):
-        s                   = grid.shape[0] // 2
         self.grid           = grid
         self.radius         = radius
         self.x              = x

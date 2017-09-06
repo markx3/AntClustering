@@ -7,14 +7,14 @@ from ant_clustering import AntClustering
              iterations:int - # iterations              defaults to 5*10**6
              fname:string   - Dataset file              defaults to '400.txt'
              alpha:float    - Alpha value               defaults to 0
-             sleep:bool     - Sleep 3s before starting  defaults to False
+             sleep:int      - Sleep ns before starting  defaults to 0
              dsize:int      - Display size              defaults to 500 '''
 
 if __name__ == "__main__":
-    antcluster = AntClustering(rad=2,
+    antcluster = AntClustering(rad=3,
                                grid=100,
                                antnum=50,
-                               fname='datasets/r15.txt',
-                               alpha=1.6,
-                               sleep=True)
+                               fname='datasets/breast-cancer-wisconsin2.txt',
+                               #alpha=11,
+                               sleep=2)
     antcluster.run()

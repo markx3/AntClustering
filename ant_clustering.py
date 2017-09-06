@@ -10,12 +10,6 @@ from pygame.locals import *
 from data import Data
 flags = DOUBLEBUF
 
-# grid 100x100
-# 5k itens
-# 50 agentes
-# raio minimo 1, 5 e 10
-# iterações: max 5mi
-
 class AntClustering():
     def __init__(self, grid=100,
                  rad=2,
@@ -24,7 +18,7 @@ class AntClustering():
                  iterations=5*10**6,
                  fname='datasets/400.txt',
                  alpha=0,
-                 sleep=False,
+                 sleep=0,
                  dsize=500):
 
         self.size       = grid          # Grid size
@@ -95,8 +89,8 @@ class AntClustering():
 
     ''' Starts sequential execution '''
     def _start_seq(self):
-        if self.sleep: time.sleep(5)
-        for i in range(self.iterations // self.antnum):
+        time.sleep(self.sleep)
+        for i in range(self.iterations):
             for ant in self.workers:
                 ant.run()
         l = list()

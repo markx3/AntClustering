@@ -11,10 +11,11 @@ from ant_clustering import AntClustering
              dsize:int      - Display size              defaults to 500 '''
 
 if __name__ == "__main__":
-    antcluster = AntClustering(rad=2,
+    antcluster = AntClustering(rad=3,
                                grid=100,
                                antnum=50,
-                               fname='datasets/r15.txt',
-                               alpha=1.3,
-                               sleep=2)
+                               fname='datasets/400.txt',
+                               #alpha=1.3,
+                               sleep=3,
+                               iterations=5*10**6)
     antcluster.run()

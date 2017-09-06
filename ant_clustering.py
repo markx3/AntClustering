@@ -48,7 +48,7 @@ class AntClustering():
         self._create_ants(self.antnum,
                           self.rad,
                           self.grid,
-                          self.iterations,
+                          self.iterations // self.antnum,
                           self.alpha)
 
     ''' Loads dataset and returns a list of Data items '''
@@ -90,12 +90,12 @@ class AntClustering():
     ''' Starts sequential execution '''
     def _start_seq(self):
         time.sleep(self.sleep)
-        for i in range(self.iterations):
+        for i in range(self.iterations // self.antnum):
             for ant in self.workers:
                 ant.run()
         l = list()
         for ant in self.workers:
-            l.append(ant.get_carrying())
+            l.append(ant._get_carrying())
         print(l)
 
     ''' Converts Data matrix into a matrix of ints in order
@@ -120,7 +120,6 @@ class AntClustering():
         t = threading.Thread(target=self._start_seq)
         t.daemon=True
         t.start()
-        #t.join()
 
         while True:
             for event in pygame.event.get():

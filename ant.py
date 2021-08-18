@@ -19,10 +19,10 @@ class Ant():
         self.max_step_size  = self.grid.shape[0] // 2 + 1
         self.alpha          = alpha
 
-    ''' Generates a random position within a random step size.
-        The step size was introduced as means of speeding up
-        the algorithm. '''
     def _randpos(self):
+        ''' Generates a random position within a random step size.
+            The step size was introduced as means of speeding up
+            the algorithm. '''
         step_size = np.random.randint(1, self.max_step_size)
         grid_shape = self.grid.shape[0]
         x = self.x + np.random.randint(-1 * step_size ,1 * step_size +1)
@@ -57,10 +57,10 @@ class Ant():
             return True
         return False
 
-    ''' drops an object if the _avg_similarity function
-        applied to the _sigmoid function has a value
-        greater than a random float between 0 and 1. '''
     def _drop(self):
+        ''' drops an object if the _avg_similarity function
+            applied to the _sigmoid function has a value
+            greater than a random float between 0 and 1. '''
         seen = self._neighbors(self.grid, self.x, self.y, n=self.r_)
         fi = self._avg_similarity(seen)
         f = self._sigmoid(self.c, fi)
